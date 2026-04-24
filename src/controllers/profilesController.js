@@ -249,9 +249,8 @@ async function searchProfiles(req, res) {
     // Parse NL query
     const filters = parseQuery(q);
     if (!filters) {
-      return res
-        .status(200)
-        .json({ status: 'error', message: 'Unable to interpret query' });
+      return res.status(400)
+      .json({ status: 'error', message: 'Unable to interpret query' });
     }
 
     return await runProfilesQuery(res, filters, 'created_at', 'asc', pageNum, limitNum);
